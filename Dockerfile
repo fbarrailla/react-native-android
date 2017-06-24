@@ -70,7 +70,7 @@ RUN cd /opt && \
 # ——————————
 
 # Gradle
-ENV GRADLE_VERSION 2.4
+ENV GRADLE_VERSION 2.14.1
 
 RUN cd /usr/lib \
  && curl -fl https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip \
@@ -86,7 +86,7 @@ ENV PATH $PATH:$GRADLE_HOME/bin
 # ——————————
 # Install Node and global packages
 # ——————————
-ENV NODE_VERSION 5.6.0
+ENV NODE_VERSION 7.10.0
 RUN cd && \
     wget -q http://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz && \
     tar -xzf node-v${NODE_VERSION}-linux-x64.tar.gz && \
@@ -98,7 +98,7 @@ ENV PATH ${PATH}:/opt/node/bin
 # Installs FB Watchman
 # ——————————
 
-RUN git clone -b v3.8.0 https://github.com/facebook/watchman.git /tmp/watchman
+RUN git clone -b v4.7.0 https://github.com/facebook/watchman.git /tmp/watchman
 WORKDIR /tmp/watchman
 RUN ./autogen.sh
 RUN ./configure
