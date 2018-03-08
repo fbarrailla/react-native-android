@@ -49,7 +49,7 @@ RUN dpkg --add-architecture i386 && \
 # ——————————
 
 ENV ANDROID_SDK_VERSION r24.4.1
-ENV ANDROID_BUILD_TOOLS_VERSION build-tools-25.0.2,build-tools-25.0.1,build-tools-23.0.3,build-tools-23.0.2,build-tools-23.0.1,build-tools-26.0.2
+ENV ANDROID_BUILD_TOOLS_VERSION build-tools-25.0.0,build-tools-25.0.2,build-tools-25.0.1,build-tools-23.0.3,build-tools-23.0.2,build-tools-23.0.1,build-tools-25.0.1,build-tools-25.0.3,build-tools-26.0.1,build-tools-26.0.2
 
 ENV ANDROID_SDK_FILENAME android-sdk_${ANDROID_SDK_VERSION}-linux.tgz
 ENV ANDROID_SDK_URL http://dl.google.com/android/${ANDROID_SDK_FILENAME}
@@ -63,7 +63,7 @@ RUN cd /opt && \
     rm ${ANDROID_SDK_FILENAME} && \
     echo y | android update sdk --no-ui -a --filter tools,platform-tools,${ANDROID_API_LEVELS},${ANDROID_BUILD_TOOLS_VERSION} && \
     echo y | android update sdk --no-ui --all --filter "${ANDROID_EXTRA_COMPONENTS}"  && \
-    echo y | android update sdk --no-ui -a --filter android-24,android-25
+    echo y | android update sdk --no-ui -a --filter android-24,android-25,android-26
 
 
 # ——————————
@@ -94,6 +94,7 @@ RUN cd && \
     mv node-v${NODE_VERSION}-linux-x64 /opt/node && \
     rm node-v${NODE_VERSION}-linux-x64.tar.gz
 ENV PATH ${PATH}:/opt/node/bin
+RUN npm i -g yarn
 
 # ——————————
 # Installs FB Watchman
